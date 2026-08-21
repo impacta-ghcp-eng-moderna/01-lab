@@ -14,7 +14,8 @@
 9. Abra a lista de treinamentos e navegue até os inscritos de um item.
 10. Valide lista vazia, cadastro válido e tentativa duplicada.
 11. Confirme que os dados digitados permanecem visíveis após um erro.
-12. Revise o diff e remova qualquer funcionalidade fora do escopo.
+12. Revise o diff pela área **Source Control** do VS Code e remova qualquer funcionalidade
+    fora do escopo. Como alternativa, use `git diff` no terminal.
 
 A página deve:
 

@@ -21,11 +21,14 @@ indevido.
    - exija contrato explícito para novos comportamentos e sinalização de conflitos;
    - não copie os detalhes da nova especificação para o arquivo de instruções.
 
-7. Aplique a mudança e revise o diff.
+7. Aplique a mudança e revise o diff pela área **Source Control** do VS Code. Como alternativa,
+   use `git diff -- .github/copilot-instructions.md` no terminal.
 8. Faça uma pergunta sobre inscritos ao Copilot e confirme que ele encontra a especificação
    nova sem esquecer os contratos existentes.
 
-Revise o diff antes de aceitar. `copilot-instructions.md` deve orientar **como trabalhar** no
+Antes de aceitar, abra **Source Control** no VS Code, selecione o arquivo alterado e examine as
+linhas removidas e adicionadas. Como alternativa, use
+`git diff -- .github/copilot-instructions.md`. O arquivo deve orientar **como trabalhar** no
 repositório; `docs/specs/` deve registrar **o que o produto deve fazer**.
 
 > [!TIP]

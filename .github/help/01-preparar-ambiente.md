@@ -14,16 +14,24 @@ Não implemente inscritos neste passo.
 
 ## 2. Selecionar o ponto de partida
 
+> [!CAUTION]
+> Não pule esta seção. A branch `inicio` contém o ponto de partida preparado para o lab.
+> Trabalhar na `main` comprometerá toda a atividade.
+
 Execute:
 
 ```bash
 git switch inicio
-git status
+git branch --show-current
+git status --short
 ```
 
-O primeiro comando seleciona a branch preparada para o exercício. O segundo deve indicar a
-branch `inicio` e não deve mostrar alterações locais. Se a branch não existir, não continue:
-a cópia do template provavelmente foi criada sem **Include all branches**.
+O primeiro comando seleciona a branch preparada para o exercício. O segundo deve imprimir
+exatamente `inicio`. O terceiro não deve mostrar alterações locais.
+
+Se `git branch --show-current` mostrar `main`, execute `git switch inicio` novamente antes de
+continuar. Se a branch `inicio` não existir, interrompa a atividade: a cópia do template
+provavelmente foi criada sem **Include all branches**.
 
 ## 3. Confirmar as ferramentas
 
@@ -75,7 +83,7 @@ aqui?". Não é necessário decidir arquivos ou classes ainda.
 
 Antes de voltar à issue, confirme:
 
-- [ ] estou na branch `inicio`;
+- [ ] `git branch --show-current` imprime `inicio`;
 - [ ] .NET 10 e SQLite estão disponíveis;
 - [ ] restore, build e testes foram executados;
 - [ ] sei onde ficam especificação, contracts, API, persistência, UI e testes;

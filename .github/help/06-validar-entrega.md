@@ -100,7 +100,9 @@ git diff --check
 git diff --stat
 ```
 
-Inspecione o diff completo no Source Control do VS Code. Procure:
+Abra **Source Control** na barra lateral do VS Code. Em **Changes**, selecione cada arquivo
+para abrir a comparação lado a lado e percorra todas as linhas adicionadas e removidas.
+Alternativamente, use `git diff` no terminal para ver o conteúdo completo. Procure:
 
 - arquivos temporários ou bancos criados acidentalmente;
 - alterações fora da fatia;

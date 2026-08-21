@@ -61,10 +61,16 @@ Use esse texto como referência, não como substituição obrigatória da análi
 ## 4. Aplicar e revisar
 
 1. Autorize o Copilot a editar somente `.github/copilot-instructions.md`.
-2. Abra o diff do arquivo.
-3. Confirme que apenas a seção necessária mudou.
-4. Verifique que os links e instruções restantes continuam corretos.
-5. Execute `git diff --check`.
+2. Abra **Source Control** na barra lateral do VS Code.
+3. Selecione `.github/copilot-instructions.md` para abrir a comparação lado a lado.
+4. Confirme nas linhas removidas e adicionadas que apenas a seção necessária mudou.
+5. Verifique que os links e instruções restantes continuam corretos.
+6. Se preferir o terminal, execute:
+
+   ```bash
+   git diff -- .github/copilot-instructions.md
+   git diff --check
+   ```
 
 ## 5. Fazer um teste de contexto
 
