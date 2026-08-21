@@ -60,8 +60,36 @@ Para este lab, uma combinação adequada é:
 | alcance da unicidade | o mesmo e-mail pode existir em treinamentos diferentes |
 | interface | somente cadastro e listagem |
 
-Discuta as decisões. Se sua equipe escolher algo diferente, registre a decisão de forma
-explícita e mantenha os critérios coerentes.
+Discuta as decisões em equipe. Em seguida, **informe explicitamente as decisões ao Copilot por
+meio de um novo prompt**. Não presuma que ele interpretará a discussão da equipe ou escolherá
+automaticamente as opções da tabela.
+
+Use este prompt, ajustando qualquer decisão que sua equipe tenha tomado de forma diferente:
+
+```text
+Para esta fatia, nossa equipe aprovou as seguintes decisões:
+
+- o identificador do treinamento será `trainingId` e ficará somente na rota;
+- o cadastro usará `POST /api/trainings/{trainingId}/attendees`;
+- a listagem usará `GET /api/trainings/{trainingId}/attendees`;
+- o sistema gerará o identificador do inscrito;
+- `firstName`, `lastName` e `email` serão obrigatórios;
+- o e-mail terá os espaços externos removidos e será comparado sem diferença entre letras
+  maiúsculas e minúsculas;
+- treinamento inexistente produzirá `404 Not Found`;
+- e-mail repetido no mesmo treinamento produzirá `409 Conflict` com erro associado a `email`;
+- o mesmo e-mail poderá ser inscrito em treinamentos diferentes;
+- a interface oferecerá somente cadastro e listagem de inscritos;
+- turmas, cadastro global de alunos, edição, exclusão, autenticação e paginação continuarão
+  fora do escopo.
+
+Considere essas decisões aprovadas nos próximos passos. Antes de redigir a especificação,
+aponte somente se alguma delas for contraditória, insuficiente para um contrato verificável ou
+incompatível com um contrato existente. Ainda não edite arquivos.
+```
+
+Leia a resposta e resolva qualquer conflito apontado. Se sua equipe escolher algo diferente,
+altere o prompt e mantenha os critérios posteriores coerentes com essa decisão.
 
 ## 4. Pedir o rascunho
 
@@ -100,7 +128,26 @@ Confirme:
 - cada critério possui uma evidência possível;
 - nada exige turmas ou cadastro separado de alunos.
 
-Depois da revisão, peça ao Copilot para salvar o arquivo.
+Depois da revisão, envie este prompt:
+
+```text
+Aprovo o rascunho revisado.
+
+Salve o conteúdo exatamente em
+`docs/specs/training-attendees-vertical-slice.md`, a partir da raiz deste repositório.
+
+Crie o diretório somente se ele não existir. Não altere
+`docs/specs/training-catalog-vertical-slice.md`, `.github/copilot-instructions.md` nem qualquer
+arquivo em `src`.
+
+Depois de salvar:
+1. informe o caminho completo do arquivo criado;
+2. mostre um resumo do conteúdo salvo;
+3. confirme que nenhum outro arquivo foi alterado.
+```
+
+Abra `docs/specs/training-attendees-vertical-slice.md` no Explorer do VS Code e confira se o
+conteúdo salvo corresponde ao rascunho aprovado.
 
 ## 6. Especificação pronta para contingência
 

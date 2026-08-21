@@ -15,26 +15,51 @@ A referência fixa funcionava quando havia um único documento. Com mais de uma 
 fazer o Copilot ignorar a especificação de inscritos ou aplicar regras de treinamentos fora do
 contexto.
 
-## 2. Pedir uma proposta antes da edição
+## 2. Diagnosticar o problema com o Copilot
 
-Abra uma conversa no modo **Ask** ou **Plan**:
+1. Abra uma **nova conversa** no Chat.
+2. Selecione o modo **Ask**.
+3. Forneça como contexto:
+   - `.github/copilot-instructions.md`;
+   - `docs/specs/training-catalog-vertical-slice.md`;
+   - `docs/specs/training-attendees-vertical-slice.md`.
+4. Envie:
 
 ```text
-Leia `.github/copilot-instructions.md` e liste os documentos em `docs/specs/`.
+Compare a seção "Especificação do catálogo" de `.github/copilot-instructions.md` com os
+documentos atuais em `docs/specs/`.
 
-A seção de especificação referencia sempre uma única fatia, mas o repositório agora possui
-comportamentos independentes. Não edite ainda.
-
-Apresente:
-1. o problema causado pela referência fixa;
-2. o menor trecho substituto que mande selecionar as especificações relevantes à tarefa;
-3. como o texto preserva contrato explícito e sinalização de conflitos;
-4. por que regras detalhadas de inscritos não devem ser copiadas para as instructions.
-
-Preserve propósito, plataforma e validação existentes.
+Ainda não edite arquivos. Explique:
+1. qual especificação a instrução atual manda ler;
+2. por que essa referência fixa deixou de ser suficiente agora que existem duas fatias;
+3. que erro de contexto pode ocorrer em uma tarefa sobre inscritos;
+4. que erro de contexto pode ocorrer em uma futura tarefa sobre outro comportamento;
+5. quais responsabilidades devem permanecer nas specifications e quais pertencem às
+   repository instructions.
 ```
 
-## 3. Revisar a proposta
+Leia a resposta. Confirme que o problema está na seleção fixa de uma única especificação, não
+no conteúdo da especificação original.
+
+## 3. Pedir uma proposta antes da edição
+
+Na mesma conversa, envie:
+
+```text
+Proponha agora somente o trecho substituto para a seção "Especificação do catálogo".
+
+O texto deve orientar o Copilot a identificar e ler em `docs/specs/` as especificações
+relacionadas à solicitação atual, sinalizar conflitos antes de editar e exigir contrato
+explícito para comportamentos novos.
+
+Preserve propósito, plataforma, validação e todas as demais seções do arquivo. Não copie
+regras detalhadas de produto para as instructions e não altere arquivos. Mostre:
+1. o trecho atual;
+2. o trecho proposto;
+3. uma justificativa curta para cada mudança.
+```
+
+## 4. Revisar a proposta
 
 Aceite apenas uma proposta que:
 
@@ -58,7 +83,7 @@ e não podem alterar silenciosamente critérios existentes.
 
 Use esse texto como referência, não como substituição obrigatória da análise.
 
-## 4. Aplicar e revisar
+## 5. Aplicar e revisar
 
 1. Autorize o Copilot a editar somente `.github/copilot-instructions.md`.
 2. Abra **Source Control** na barra lateral do VS Code.
@@ -72,7 +97,7 @@ Use esse texto como referência, não como substituição obrigatória da análi
    git diff --check
    ```
 
-## 5. Fazer um teste de contexto
+## 6. Fazer um teste de contexto
 
 Em uma nova conversa, pergunte:
 
@@ -85,7 +110,7 @@ A resposta deve localizar a especificação de inscritos e reconhecer que os con
 de treinamentos continuam válidos. Se o Copilot consultar apenas a especificação antiga,
 revise a instrução.
 
-## 6. Verificação final
+## 7. Verificação final
 
 - [ ] a referência deixou de ser fixa em uma única especificação;
 - [ ] detalhes de produto continuam em `docs/specs/`;

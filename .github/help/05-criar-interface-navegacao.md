@@ -98,7 +98,7 @@ Abra dois terminais.
 No primeiro:
 
 ```bash
-dotnet run --project src/Api --launch-profile http --urls http://127.0.0.1:5080
+dotnet run --project src/Api --launch-profile http --urls http://127.0.0.1:5221
 ```
 
 No segundo:
