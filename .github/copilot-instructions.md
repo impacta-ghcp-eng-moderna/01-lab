@@ -18,4 +18,4 @@ Antes de concluir uma alteração, identifique e execute os comandos de build, t
 
 ## Especificação do catálogo
 
-Antes de planejar ou alterar o comportamento do catálogo de treinamentos, leia a [especificação da primeira fatia vertical](../docs/specs/training-catalog-vertical-slice.md). Se a solicitação conflitar com a especificação, sinalize o conflito antes de editar. Novos comportamentos exigem contrato explícito e não podem alterar silenciosamente os critérios aprovados.
+Antes de planejar ou alterar qualquer comportamento do catálogo de treinamentos, leia a(s) especificação(ões) relevante(s) em [docs/specs](../docs/specs) para o escopo da solicitação atual. Se a solicitação afetar comportamentos de treinamentos, inscritos ou outros fluxos independentes, consulte a especificação correspondente. Se a solicitação conflitar com qualquer especificação aplicável, sinalize o conflito antes de editar. Novos comportamentos exigem contrato explícito e não podem alterar silenciosamente os critérios aprovados.

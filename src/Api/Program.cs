@@ -98,6 +98,106 @@ app.MapPost("/api/trainings", async (CreateTrainingRequest request, TrainingCata
 	.Produces(StatusCodes.Status400BadRequest)
 	.Produces(StatusCodes.Status409Conflict);
 
+app.MapPost("/api/trainings/{trainingId:guid}/attendees", async (Guid trainingId, CreateAttendeeRequest request, TrainingCatalogDbContext dbContext) =>
+{
+	var errors = new Dictionary<string, string[]>();
+
+	if (string.IsNullOrWhiteSpace(request.FirstName))
+	{
+		errors["firstName"] = ["O nome é obrigatório."];
+	}
+
+	if (string.IsNullOrWhiteSpace(request.LastName))
+	{
+		errors["lastName"] = ["O sobrenome é obrigatório."];
+	}
+
+	if (string.IsNullOrWhiteSpace(request.Email))
+	{
+		errors["email"] = ["O e-mail é obrigatório."];
+	}
+
+	if (errors.Count > 0)
+	{
+		return Results.BadRequest(new { errors });
+	}
+
+	var trainingExists = await dbContext.Trainings.AnyAsync(training => training.Id == trainingId);
+
+	if (!trainingExists)
+	{
+		return Results.NotFound();
+	}
+
+	var normalizedEmail = EmailNormalizer.Normalize(request.Email!);
+	var emailAlreadyRegistered = await dbContext.Attendees.AnyAsync(attendee =>
+		attendee.TrainingId == trainingId && attendee.Email == normalizedEmail);
+
+	if (emailAlreadyRegistered)
+	{
+		return Results.Conflict(new
+		{
+			errors = new Dictionary<string, string[]>
+			{
+				["email"] = ["Este e-mail já está inscrito neste treinamento."]
+			}
+		});
+	}
+
+	var attendee = new AttendeeEntity
+	{
+		Id = Guid.NewGuid(),
+		FirstName = request.FirstName!,
+		LastName = request.LastName!,
+		Email = normalizedEmail,
+		TrainingId = trainingId
+	};
+
+	dbContext.Attendees.Add(attendee);
+
+	try
+	{
+		await dbContext.SaveChangesAsync();
+	}
+	catch (DbUpdateException)
+	{
+		return Results.Conflict(new
+		{
+			errors = new Dictionary<string, string[]>
+			{
+				["email"] = ["Este e-mail já está inscrito neste treinamento."]
+			}
+		});
+	}
+
+	var response = attendee.ToAttendee();
+	return Results.Created($"/api/trainings/{trainingId}/attendees/{response.Id}", response);
+})
+	.Produces<Attendee>(StatusCodes.Status201Created)
+	.Produces(StatusCodes.Status400BadRequest)
+	.Produces(StatusCodes.Status404NotFound)
+	.Produces(StatusCodes.Status409Conflict);
+
+app.MapGet("/api/trainings/{trainingId:guid}/attendees", async (Guid trainingId, TrainingCatalogDbContext dbContext) =>
+{
+	var trainingExists = await dbContext.Trainings.AnyAsync(training => training.Id == trainingId);
+
+	if (!trainingExists)
+	{
+		return Results.NotFound();
+	}
+
+	var attendees = await dbContext.Attendees
+		.AsNoTracking()
+		.Where(attendee => attendee.TrainingId == trainingId)
+		.Select(attendee => attendee.ToAttendee())
+		.ToArrayAsync();
+
+	return Results.Ok(attendees);
+})
+	.Produces<IReadOnlyCollection<Attendee>>(StatusCodes.Status200OK)
+	.Produces(StatusCodes.Status404NotFound);
+
 app.MapGet("/api/trainings", async (TrainingCatalogDbContext dbContext) =>
 {
 	var trainings = await dbContext.Trainings
