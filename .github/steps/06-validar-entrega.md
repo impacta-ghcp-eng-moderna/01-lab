@@ -10,7 +10,8 @@ aparência da interface como prova de que persistência e regras de negócio est
 3. Execute restore, build e toda a suíte de testes.
 4. Inspecione a migration e o snapshot do modelo.
 5. Repita no navegador o caminho principal e o erro de duplicidade.
-6. Revise o diff final procurando alterações fora do escopo.
+6. Revise o diff final pela área **Source Control** do VS Code, procurando alterações fora do
+   escopo. Como alternativa, use `git diff` no terminal.
 7. Registre divergências que não puderem ser resolvidas no tempo do lab.
 
 Confirme:
@@ -23,7 +24,9 @@ Confirme:
 6. sucesso, lista vazia, treinamento inexistente e duplicidade têm comportamento útil;
 7. API e Client continuam usando os contratos documentados.
 
-Revise o diff final e registre qualquer divergência conhecida em vez de escondê-la.
+Use **Source Control** no VS Code para selecionar e comparar cada arquivo do diff final. Como
+alternativa, execute `git diff` no terminal. Registre qualquer divergência conhecida em vez
+de escondê-la.
 
 > [!TIP]
 > Para comandos, matriz de evidências e roteiro final, consulte as

@@ -67,7 +67,9 @@ Implemente primeiro a página de inscritos com a rota
 Inclua carregamento do treinamento e dos inscritos, lista vazia, formulário, estados de envio,
 mensagens de sucesso e erro. Preserve os dados em falha.
 
-Não altere ainda a página inicial. Execute o build e mostre o diff da nova página.
+Não altere ainda a página inicial. Execute o build e pare para revisão. Abra **Source Control**
+no VS Code e selecione a nova página para examinar a comparação. Como alternativa, use
+`git diff -- caminho/da/nova/pagina`.
 ```
 
 Revise nomes, textos, contratos serializados e tratamento de respostas. Se o Copilot duplicar
@@ -84,8 +86,10 @@ item selecionado. Preserve o formulário e o comportamento atual da página inic
 Inclua somente a navegação necessária e execute o build.
 ```
 
-Abra o diff de `Index.razor`. Confirme que cada item envia seu próprio identificador e que o
-restante do catálogo não foi reestruturado sem necessidade.
+Na área **Source Control** do VS Code, selecione `Index.razor` e examine as linhas adicionadas
+e removidas. Como alternativa, use `git diff -- src/Client/Pages/Index.razor`. Confirme que
+cada item envia seu próprio identificador e que o restante do catálogo não foi reestruturado
+sem necessidade.
 
 ## 6. Executar API e Client
 
@@ -136,7 +140,9 @@ dotnet test src/TrainingCatalog.slnx --no-build
 git diff --check
 ```
 
-Revise o diff e confirme:
+Revise o diff pela área **Source Control** do VS Code: selecione cada arquivo para abrir a
+comparação e percorra todas as alterações. Como alternativa, execute `git diff` no terminal.
+Confirme:
 
 - [ ] há uma página dedicada de inscritos;
 - [ ] ela é acessível pela lista de treinamentos;

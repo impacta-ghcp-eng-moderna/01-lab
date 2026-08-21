@@ -107,7 +107,9 @@ Reutilize o formato de erros existente. Garanta que:
 - a resposta de criação informe a localização;
 - a listagem pertença somente ao treinamento da rota.
 
-Execute o build e pare para mostrar o diff antes dos testes.
+Execute o build e pare antes dos testes. Abra **Source Control** no VS Code e selecione cada
+arquivo alterado para revisar sua comparação. Como alternativa, apresente `git diff` no
+terminal.
 ```
 
 Confira o contrato esperado:
