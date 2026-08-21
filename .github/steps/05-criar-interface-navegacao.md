@@ -1,11 +1,22 @@
 # Passo 5 — Criar a interface e a navegação
 
-**Tempo sugerido: 15 minutos**
+**Tempo sugerido: 30 minutos**
 
-Abra uma nova sessão no modo **Agent**, agora com contexto restrito à interface, aos contratos
-compartilhados e à especificação de inscrições.
+1. Abra uma nova sessão no modo **Agent**, com contexto restrito à interface, aos contratos
+   compartilhados e à especificação de inscrições.
+2. Peça um plano com rota da página, arquivos envolvidos e estados visuais.
+3. Confirme como a página receberá o identificador do treinamento.
+4. Aprove o plano antes de editar.
+5. Crie a página de inscritos usando os componentes e padrões existentes.
+6. Adicione à lista de treinamentos uma ação de navegação para a nova página.
+7. Compile a solução antes de iniciar as aplicações.
+8. Execute API e Client em terminais separados.
+9. Abra a lista de treinamentos e navegue até os inscritos de um item.
+10. Valide lista vazia, cadastro válido e tentativa duplicada.
+11. Confirme que os dados digitados permanecem visíveis após um erro.
+12. Revise o diff e remova qualquer funcionalidade fora do escopo.
 
-Crie uma página para gerenciar os inscritos de um treinamento. Ela deve:
+A página deve:
 
 - identificar claramente o treinamento selecionado;
 - listar os inscritos já cadastrados;
@@ -17,9 +28,6 @@ Crie uma página para gerenciar os inscritos de um treinamento. Ela deve:
 Na lista existente de treinamentos, adicione uma ação que leve à página de inscritos do item
 selecionado. Não transforme a tela em um CRUD de treinamentos nem adicione navegação que não
 seja necessária à fatia.
-
-Execute API e Client em terminais separados e valide no navegador um cadastro válido e uma
-tentativa de e-mail duplicado.
 
 > [!TIP]
 > Para prompt completo, rotas sugeridas, comandos e roteiro de teste manual, consulte as

@@ -1,9 +1,17 @@
 # Passo 6 — Validar a fatia completa
 
-**Tempo sugerido: 5 minutos**
+**Tempo sugerido: 10 minutos**
 
 Antes de encerrar, relacione cada critério da especificação a uma evidência. Não use apenas a
 aparência da interface como prova de que persistência e regras de negócio estão corretas.
+
+1. Reabra os critérios de aceitação da especificação.
+2. Para cada critério, indique uma evidência concreta.
+3. Execute restore, build e toda a suíte de testes.
+4. Inspecione a migration e o snapshot do modelo.
+5. Repita no navegador o caminho principal e o erro de duplicidade.
+6. Revise o diff final procurando alterações fora do escopo.
+7. Registre divergências que não puderem ser resolvidas no tempo do lab.
 
 Confirme:
 
