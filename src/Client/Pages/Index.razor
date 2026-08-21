@@ -91,6 +91,9 @@
                                     <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Icon="@Icons.Material.Outlined.Event">@training.StartDate.ToString("dd/MM/yyyy")</MudChip>
                                     <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Icon="@Icons.Material.Outlined.Schedule">@training.DurationHours h</MudChip>
                                 </div>
+                                <MudButton Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small" StartIcon="@Icons.Material.Outlined.Groups" Href="@($"/trainings/{training.Id}/attendees")">
+                                    Ver inscritos
+                                </MudButton>
                             </MudListItem>
                         }
                     </MudList>

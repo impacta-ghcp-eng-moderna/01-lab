@@ -6,6 +6,8 @@ public sealed class TrainingEntity
 {
     public Guid Id { get; set; }
 
+    public ICollection<AttendeeEntity> Attendees { get; set; } = [];
+
     public string Title { get; set; } = string.Empty;
 
     public string Description { get; set; } = string.Empty;
