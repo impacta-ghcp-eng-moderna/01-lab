@@ -31,4 +31,4 @@ A branch `inicio` reutiliza o resultado final do walkthrough
 - interface Blazor WebAssembly;
 - instruções, prompt file, skill e custom agent criados no Módulo 01.
 
-O lab foi dimensionado para aproximadamente 60 minutos e será conduzido por uma issue.
+O lab foi dimensionado para aproximadamente 120 minutos e será conduzido por uma issue.

@@ -1,56 +1,149 @@
-# Ajuda completa — Criar interface e navegação
+# Passo 5 — Criar a interface e a navegação - Instruções completas
 
-## Prompt sugerido
+Agora a API já possui contrato e persistência validados. Este passo cria a jornada do usuário
+sem alterar novamente o comportamento do servidor.
+
+## 1. Preparar o contexto da interface
+
+1. Abra uma nova conversa no modo **Agent**.
+2. Adicione:
+   - `.github/copilot-instructions.md`;
+   - a especificação de inscritos;
+   - os contratos em `src/Application`;
+   - `src/Client/Pages/Index.razor`;
+   - `src/Client/Pages/Index.razor.css`;
+   - arquivos de layout e configuração do Client.
+3. Não adicione migrations ou testes de infraestrutura ao contexto inicial.
+
+## 2. Pedir um plano visual e técnico
 
 ```text
-Leia a especificação de inscritos em `docs/specs/`, os contratos compartilhados em
-`src/Application`, a página atual em `src/Client/Pages/Index.razor` e os padrões visuais do
-Client.
+Leia a especificação de inscritos, os contratos compartilhados e os padrões atuais do Client.
+Planeje, sem editar, a interface da nova fatia.
 
-Implemente a interface da fatia de inscritos sem alterar a API.
-
-Crie uma página com rota `/trainings/{trainingId:guid}/attendees` que:
-- identifica o treinamento;
-- carrega e lista seus inscritos;
-- apresenta estado vazio;
-- coleta nome, sobrenome e e-mail;
-- impede envio repetido enquanto a requisição está em andamento;
-- apresenta sucesso e atualiza a lista;
-- apresenta erros de campo e de negócio sem apagar os dados preenchidos.
-
-Na lista de treinamentos, adicione para cada item uma ação clara que navegue para essa página.
+O plano deve mostrar:
+1. rota da página de inscritos e parâmetro recebido;
+2. como identificar o treinamento selecionado;
+3. como carregar a lista;
+4. campos e validações do formulário;
+5. estados de carregamento, vazio, sucesso e erro;
+6. comportamento após cadastro válido;
+7. comportamento após duplicidade;
+8. alteração mínima na lista de treinamentos para navegar até a página;
+9. arquivos envolvidos e validações.
 
 Restrições:
 - reutilize MudBlazor e os padrões existentes;
 - reutilize os contratos compartilhados;
+- não altere API ou persistência;
 - não implemente edição ou exclusão;
-- não altere endpoints ou persistência;
-- não misture o formulário de inscritos ao formulário de criação de treinamento.
+- não misture o formulário de inscritos ao cadastro de treinamento.
 
-Antes de editar, mostre um plano curto, os arquivos envolvidos e o fluxo dos estados da tela.
-Ao final, execute as validações e descreva como testar sucesso e duplicidade no navegador.
+Pare depois do plano.
 ```
 
-## Execução
+## 3. Revisar o plano
 
-Terminal da API:
+Confirme que:
+
+- a rota pode ser aberta para um treinamento específico;
+- o título ou outra identificação útil do treinamento aparece na página;
+- a lista vazia não é tratada como erro;
+- o botão de envio é protegido durante a requisição;
+- erros de campo podem ser associados aos inputs;
+- `409` produz uma mensagem útil;
+- o formulário não é limpo em caso de falha;
+- a lista é atualizada depois do sucesso;
+- existe um caminho claro para voltar ao catálogo.
+
+## 4. Implementar a página
+
+Autorize:
+
+```text
+Implemente primeiro a página de inscritos com a rota
+`/trainings/{trainingId:guid}/attendees`.
+
+Inclua carregamento do treinamento e dos inscritos, lista vazia, formulário, estados de envio,
+mensagens de sucesso e erro. Preserve os dados em falha.
+
+Não altere ainda a página inicial. Execute o build e mostre o diff da nova página.
+```
+
+Revise nomes, textos, contratos serializados e tratamento de respostas. Se o Copilot duplicar
+um contrato já disponível em `Application`, peça para reutilizá-lo.
+
+## 5. Vincular a lista de treinamentos
+
+Depois:
+
+```text
+Adicione à lista existente de treinamentos uma ação clara para abrir a página de inscritos do
+item selecionado. Preserve o formulário e o comportamento atual da página inicial.
+
+Inclua somente a navegação necessária e execute o build.
+```
+
+Abra o diff de `Index.razor`. Confirme que cada item envia seu próprio identificador e que o
+restante do catálogo não foi reestruturado sem necessidade.
+
+## 6. Executar API e Client
+
+Abra dois terminais.
+
+No primeiro:
 
 ```bash
 dotnet run --project src/Api --launch-profile http --urls http://127.0.0.1:5080
 ```
 
-Terminal do Client:
+No segundo:
 
 ```bash
 dotnet run --project src/Client --launch-profile http --urls http://127.0.0.1:5152
 ```
 
-## Roteiro manual
+Aguarde as mensagens de inicialização. O Codespace pode perguntar se deseja abrir ou tornar
+uma porta pública; para este teste, basta abrir a porta encaminhada no navegador.
 
-1. Cadastre ou localize um treinamento na página inicial.
-2. Use a nova ação desse item para abrir a página de inscritos.
-3. Confirme o estado vazio.
-4. Cadastre um inscrito e confira a mensagem e a lista atualizada.
-5. Tente novamente com o mesmo e-mail em outra combinação de caixa e espaços.
-6. Confirme a mensagem útil e a preservação dos campos.
-7. Volte à lista e verifique se a navegação continua funcional.
+## 7. Executar o roteiro manual
+
+1. Abra o Client.
+2. Cadastre um treinamento ou use um já existente.
+3. Na lista, clique na ação de inscritos.
+4. Confirme que a página identifica o treinamento correto.
+5. Confirme o estado vazio.
+6. Tente enviar o formulário sem preencher os campos.
+7. Preencha nome, sobrenome e um e-mail válido.
+8. Envie e observe o estado de carregamento.
+9. Confirme a mensagem de sucesso e o item na lista.
+10. Tente novamente com o mesmo e-mail, mudando caixa ou adicionando espaços.
+11. Confirme a mensagem de duplicidade.
+12. Confirme que os dados digitados não foram apagados.
+13. Volte à lista de treinamentos e abra outro item.
+14. Confirme que os inscritos do primeiro treinamento não aparecem no segundo.
+
+Se algum resultado divergir, descreva o comportamento ao Copilot e referencie o critério da
+especificação. Evite pedir "corrija tudo"; forneça a evidência concreta.
+
+## 8. Validar e revisar
+
+Pare as aplicações com <kbd>Ctrl</kbd>+<kbd>C</kbd> e execute:
+
+```bash
+dotnet build src/TrainingCatalog.slnx
+dotnet test src/TrainingCatalog.slnx --no-build
+git diff --check
+```
+
+Revise o diff e confirme:
+
+- [ ] há uma página dedicada de inscritos;
+- [ ] ela é acessível pela lista de treinamentos;
+- [ ] estados de carregamento, vazio, sucesso e erro são visíveis;
+- [ ] a lista atualiza após o sucesso;
+- [ ] o formulário permanece preenchido após erro;
+- [ ] não houve alteração de API, migration ou regra de negócio;
+- [ ] edição e exclusão não foram adicionadas.
+
+Volte à issue e comente `integrado`.

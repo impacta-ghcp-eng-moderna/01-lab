@@ -14,13 +14,13 @@ apenas uma vez em cada treinamento.
 
 | Passo | Tempo | Entrega | Palavra |
 | --- | ---: | --- | --- |
-| 1. Preparar o ambiente | 5 min | linha de base executada e arquitetura localizada | `preparado` |
-| 2. Especificar inscrições | 10 min | nova especificação revisada em `docs/specs/` | `especificado` |
-| 3. Ajustar instructions | 5 min | seleção contextual de especificações | `contextualizado` |
-| 4. API e persistência | 20 min | cadastro, listagem, migration, unicidade e testes | `persistido` |
-| 5. Interface e navegação | 15 min | página de inscritos acessível pela lista | `integrado` |
-| 6. Validar a entrega | 5 min | critérios relacionados a evidências | `validado` |
-| **Total** | **60 min** | | |
+| 1. Preparar o ambiente | 10 min | linha de base executada e arquitetura localizada | `preparado` |
+| 2. Especificar inscrições | 20 min | nova especificação revisada em `docs/specs/` | `especificado` |
+| 3. Ajustar instructions | 10 min | seleção contextual de especificações | `contextualizado` |
+| 4. API e persistência | 40 min | cadastro, listagem, migration, unicidade e testes | `persistido` |
+| 5. Interface e navegação | 30 min | página de inscritos acessível pela lista | `integrado` |
+| 6. Validar a entrega | 10 min | critérios relacionados a evidências | `validado` |
+| **Total** | **120 min** | | |
 
 Cada passo apresenta somente objetivo, limites e critérios suficientes para a tentativa
 autônoma. No final há um link para `.github/help/`, onde ficam prompts, comandos, decisões
@@ -90,7 +90,7 @@ repositório-template; ao iniciar, o workflow habilita somente a próxima etapa.
 - Uma palavra incorreta não avança a atividade.
 - A palavra correta publica primeiro a devolutiva e depois o passo seguinte.
 - Todos os links de ajuda apontam para a cópia do aluno, não para o template original.
-- O aluno consegue concluir o caminho principal em até 60 minutos.
+- O aluno consegue concluir o caminho principal em até 120 minutos.
 - A ajuda completa permite recuperar um grupo bloqueado sem entregar código-fonte pronto.
 - A solução de referência em `main` satisfaz os mesmos critérios, ainda que sua organização
   interna seja diferente da solução dos alunos.

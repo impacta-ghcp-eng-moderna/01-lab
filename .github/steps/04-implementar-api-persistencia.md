@@ -1,12 +1,21 @@
 # Passo 4 — Implementar API e persistência
 
-**Tempo sugerido: 20 minutos**
+**Tempo sugerido: 40 minutos**
 
-Abra uma nova sessão no modo **Agent** e forneça como contexto a nova especificação, os
-contratos existentes, o `DbContext` e os testes da API.
+1. Abra uma nova sessão no modo **Agent**.
+2. Referencie a nova especificação, os contratos existentes, o `DbContext` e os testes.
+3. Peça um plano curto com arquivos, contratos, modelo de dados e validações.
+4. Revise especialmente a rota, a normalização do e-mail e a unicidade por treinamento.
+5. Aprove o plano antes das edições.
+6. Acompanhe a criação dos contratos, entidade, relacionamento e endpoints.
+7. Peça testes pela API pública para os cenários principais e de erro.
+8. Execute os testes direcionados antes de gerar a migration.
+9. Gere a migration, mas não a aplique imediatamente.
+10. Use a skill disponível para revisar relacionamento, chave estrangeira e índice.
+11. Aplique a migration somente depois da revisão.
+12. Execute novamente os testes e inspecione ao menos uma resposta HTTP.
 
-Peça um plano curto antes das edições. A implementação deve atravessar somente as camadas
-necessárias para:
+A implementação deve atravessar somente as camadas necessárias para:
 
 - cadastrar um inscrito em um treinamento;
 - listar os inscritos desse treinamento;

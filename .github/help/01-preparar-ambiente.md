@@ -1,28 +1,84 @@
-# Ajuda completa — Preparar o ambiente
+# Passo 1 — Preparar o ambiente - Instruções completas
 
-## Comandos
+Use este roteiro se precisar de orientação detalhada para preparar e reconhecer o projeto.
+Não implemente inscritos neste passo.
+
+## 1. Criar o Codespace
+
+1. Volte ao comentário principal do passo 1.
+2. Clique em **Abrir no GitHub Codespaces**.
+3. Na tela de criação, confirme que o repositório copiado por você está selecionado.
+4. Crie o Codespace e aguarde o VS Code abrir no navegador.
+5. Espere o `postCreateCommand` terminar. Ele instala o SQLite e apresenta informações do .NET.
+6. Se o terminal não estiver visível, abra **Terminal > New Terminal**.
+
+## 2. Selecionar o ponto de partida
+
+Execute:
 
 ```bash
 git switch inicio
+git status
+```
+
+O primeiro comando seleciona a branch preparada para o exercício. O segundo deve indicar a
+branch `inicio` e não deve mostrar alterações locais. Se a branch não existir, não continue:
+a cópia do template provavelmente foi criada sem **Include all branches**.
+
+## 3. Confirmar as ferramentas
+
+```bash
 dotnet --version
+sqlite3 --version
+```
+
+O .NET deve informar uma versão 10.x. O SQLite deve imprimir sua versão, e não
+`command not found`.
+
+## 4. Validar a linha de base
+
+Execute um comando por vez:
+
+```bash
 dotnet restore src/TrainingCatalog.slnx
 dotnet build src/TrainingCatalog.slnx --no-restore
 dotnet test src/TrainingCatalog.slnx --no-build
 ```
 
-O SDK deve ser .NET 10 e build/testes devem concluir antes da nova implementação.
+O `restore` recupera dependências, o `build` compila todos os projetos e o `test` executa a
+suíte existente. Se um comando falhar:
 
-## Mapa mínimo
+1. não altere código imediatamente;
+2. copie o comando e a primeira mensagem de erro relevante;
+3. confirme que o comando anterior terminou com sucesso;
+4. discuta com a equipe se a falha é ambiental ou pertence à linha de base;
+5. peça ajuda ao instrutor se não conseguir estabelecer uma linha de base confiável.
 
-Localize:
+## 5. Reconhecer a solução
 
-- `docs/specs/training-catalog-vertical-slice.md`: contrato da fatia existente;
-- `.github/copilot-instructions.md`: contexto automático do repositório;
-- `src/Application`: contratos compartilhados;
-- `src/Api/Program.cs`: endpoints mínimos;
-- `src/Infrastructure`: entidade, `DbContext` e migrations;
-- `src/Client/Pages`: interface Blazor;
-- `src/Tests/Api.Tests`: testes pela API pública.
+Abra os itens abaixo no Explorer do VS Code:
 
-Não corrija problemas nem peça a implementação de inscritos neste passo. Se a linha de base
-falhar, registre o comando e o erro para separar falha preexistente de regressão.
+| Caminho | O que observar |
+| --- | --- |
+| `docs/specs/training-catalog-vertical-slice.md` | como o comportamento aprovado é documentado |
+| `.github/copilot-instructions.md` | instruções carregadas automaticamente pelo Copilot |
+| `src/Application` | contratos compartilhados entre API e Client |
+| `src/Api/Program.cs` | rotas, validações e respostas HTTP |
+| `src/Infrastructure` | entidade, `DbContext` e migrations |
+| `src/Client/Pages` | formulário e lista atuais em Blazor |
+| `src/Tests/Api.Tests` | testes funcionais pela API pública |
+
+Para cada pasta, responda em equipe: "qual parte da nova fatia provavelmente passará por
+aqui?". Não é necessário decidir arquivos ou classes ainda.
+
+## 6. Verificação final
+
+Antes de voltar à issue, confirme:
+
+- [ ] estou na branch `inicio`;
+- [ ] .NET 10 e SQLite estão disponíveis;
+- [ ] restore, build e testes foram executados;
+- [ ] sei onde ficam especificação, contracts, API, persistência, UI e testes;
+- [ ] nenhum arquivo foi alterado.
+
+Volte à issue e comente `preparado`.
