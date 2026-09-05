@@ -1,4 +1,4 @@
-# Lab — Inscritos em treinamentos
+# Lab 01 — Inscritos em treinamentos
 
 Neste lab do Módulo 01, você ampliará uma aplicação .NET 10 existente com uma nova fatia
 vertical: cadastrar e listar inscritos (`attendees`) de cada treinamento.
